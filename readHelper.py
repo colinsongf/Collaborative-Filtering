@@ -15,8 +15,7 @@ def readTrain(file):
             movie.append(int(t[0]))
             rating.append(int(t[2])-3) # pre-process here, option 2
 
-    m = csr_matrix((rating, (user, movie)))
-    M = m.toarray()
+    m = csr_matrix((rating, (user, movie)), dtype = float)
     return m
 
 # read query file into a user-movies dictionary

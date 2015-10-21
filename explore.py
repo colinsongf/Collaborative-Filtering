@@ -1,9 +1,10 @@
 __author__ = 'Ariel'
 
 import numpy as np
-from scipy.sparse import coo_matrix,csr_matrix
+from scipy.sparse import csr_matrix
+
 import readHelper
-import KNN
+import util
 
 # training set exploration
 
@@ -50,11 +51,12 @@ print np.average(m3[m3.nonzero()[0].tolist()])
 M = readHelper.readTrain('train.csv')
 
 q1 = M[4321]
-print KNN.knn(M, q1, 6, 'dotp')
-print KNN.knn(M, q1, 6, 'cosine')
-
+#print KNN.knn(M, q1, 6, 'dotp')
+#print KNN.knn(M, q1, 6, 'cosine')
+sim = util.similarity(M, 4321,'dotp')
+print util.knn(sim,5)
 
 q2 = M[:,3]
-print KNN.knn(M.transpose(), q2, 6, 'dotp')
-print KNN.knn(M.transpose(), q2, 6, 'cosine')
+#print KNN.knn(M.transpose(), q2, 6, 'dotp')
+#print KNN.knn(M.transpose(), q2, 6, 'cosine')
 

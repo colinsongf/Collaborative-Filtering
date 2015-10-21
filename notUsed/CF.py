@@ -1,7 +1,6 @@
 __author__ = 'Ariel'
 
-import numpy as np
-import KNN
+
 
 
 def memoryCF(m, query, k, func, func_com):
