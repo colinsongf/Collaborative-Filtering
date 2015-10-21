@@ -1,7 +1,7 @@
 __author__ = 'Ariel'
 
 import numpy as np
-from scipy.sparse import coo_matrix
+from scipy.sparse import coo_matrix,csr_matrix
 import readHelper
 import KNN
 
@@ -18,7 +18,7 @@ with open('train.csv') as dev:
         movie.append(int(t[0]))
         rating.append(int(t[2]))
 
-m = coo_matrix((rating, (user, movie)))
+m = csr_matrix((rating, (user, movie)))
 
 print m.nnz
 print m.shape
