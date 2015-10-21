@@ -26,13 +26,32 @@ def predict(m, knn, similarity, func):
         res =  np.mean(m[knn].toarray(), axis = 0)
     return 3 + np.rint(res) # nearest integer and plus 3
 
+def predict_new(m, knn, col, similarity, func):
+    temp = m[knn, col].toarray().flatten()
+    if (func == 'weight') and (np.sum(knnWeight(similarity,knn)) != 0):
+        res = np.average(temp, weights = knnWeight(similarity, knn))
+    else:
+        res =  np.mean(temp)
+    return 3 + round(res) # nearest integer and plus 3
+
+
 def memCF(m, query, k, func, func_w):
     res = {}
     for user in query.keys():
-        print user
+        #print user
         sim = similarity(m, user, func)
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
         for movie in query[user]:
             res[user, movie] = prediction[movie]
+    return res
+
+def memcf(m, tuples, k, func, func_w):
+    res =[]
+    for user,movie in tuples :
+        #print user
+        sim = similarity(m, user, func)
+        temp = knn(sim, k)
+        prediction = predict_new(m, temp, movie, sim, func_w)
+        res.append(prediction)
     return res
