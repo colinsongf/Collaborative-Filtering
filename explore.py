@@ -4,7 +4,7 @@ import numpy as np
 from scipy.sparse import csr_matrix
 
 import readHelper
-import util
+import model
 
 # training set exploration
 
@@ -50,13 +50,13 @@ print np.average(m3[m3.nonzero()[0].tolist()])
 
 M = readHelper.readTrain('train.csv')
 
-sim = util.similarity(M, 4321, 'dotp')
-print util.knn(sim,5)
-sim = util.similarity(M, 4321, 'cosine')
-print util.knn(sim,5)
+sim = model.similarity(M, 4321, 'dotp')
+print model.knn(sim,5)
+sim = model.similarity(M, 4321, 'cosine')
+print model.knn(sim,5)
 
-sim = util.similarity(M.transpose(), 3, 'dotp')
-print util.knn(sim,5)
-sim = util.similarity(M.transpose(), 3, 'cosine')
-print util.knn(sim,5)
+sim = model.similarity(M.transpose(), 3, 'dotp')
+print model.knn(sim,5)
+sim = model.similarity(M.transpose(), 3, 'cosine')
+print model.knn(sim,5)
 
