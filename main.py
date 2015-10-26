@@ -37,6 +37,7 @@ def main():
         M = readHelper.readTrainModel(train)
         tuples = readHelper.readQueryModel(dev)
         if args.p:
+            #pred = model.pccModelCFnew(M, tuples, args.k, args.s, args.w)
             pred = model.pccModelCF(M, tuples, args.k, args.s, args.w)
         else:
             pred = model.modelCF(M, tuples, args.k, args.s, args.w)

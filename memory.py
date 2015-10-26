@@ -26,7 +26,7 @@ def predict(m, knn, similarity, func):
         res = np.average(m[knn].toarray(), axis = 0, weights = knnWeight(similarity, knn))
     else:
         res = np.mean(m[knn].toarray(), axis = 0)
-    return 3 + res # plus 3
+    return res
 
 def memoryCF(m, query, k, func, func_w):
     res = {} # return the dictionary {u,m} = prediction for all the queries
@@ -36,38 +36,45 @@ def memoryCF(m, query, k, func, func_w):
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
         for movie in query[user]:
-            res[user, movie] = prediction[movie]
+            res[user, movie] = prediction[movie] + 3 # plus 3
     return res
 
 def pccMemoryCF(m, query, k, func, func_w):
     res = {}
-    norm = pccUser(m)
+    norm, mu, std = pccI(m)
     for user in query.keys():
         #print user
         sim = similarity(norm, user, func)
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
+
         for movie in query[user]:
-            if prediction[movie] < 1:
+            pred = prediction[movie] * std[movie] + mu[movie]+ 3 # plus 3
+            if pred > 5:
+                res[user, movie] = 5
+            elif pred < 1:
                 res[user, movie] = 1
-            elif prediction[movie] > 5:
-                prediction[movie] = 5
             else:
-                res[user, movie] = prediction[movie]
+                res[user, movie] = pred
+            print res[user,movie]
     return res
 
 
 def pccI(m):
     m = csr_matrix(m.transpose())
+    mus = np.zeros(m.shape[0])
+    stds = np.zeros(m.shape[0])
     for x in xrange(m.shape[0]):
         if m[x].size:
             mu = np.mean(m[x].data)
             std = np.std(m[x].data)
+            mus[x] = mu
+            stds[x] = std
             m.data[m.indptr[x]:m.indptr[x+1]] -= mu
             if std > 0:
                 m.data[m.indptr[x]:m.indptr[x+1]] /= std
 
-    return csr_matrix(m.transpose())
+    return csr_matrix(m.transpose()), mus, stds
 
 def pccU(m):
 

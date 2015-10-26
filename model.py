@@ -26,7 +26,7 @@ def predict(m, knn, similarity, func):
         res = np.average(m[:,knn], axis = 1, weights = knnWeight(similarity, knn))
     else:
         res = np.mean(m[:,knn], axis = 1)
-    return 3 + res # plus 3
+    return res
 
 def modelCF(m, tuples, k, func, func_w):
     res = [] # return the list of predictions given the query tuples
@@ -37,24 +37,26 @@ def modelCF(m, tuples, k, func, func_w):
         sim = simPair[pair[0]]
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
-        res.append(prediction[pair[1]])
+        res.append(prediction[pair[1]] + 3)# plus 3
     return res
 
 
 def pccModelCF(m, tuples, k, func, func_w):
     res = [] # return the list of predictions given the query tuples
     m = np.asarray(m, order = 'F') # column-major order
-
-    norm = pccItem(m)
+    norm, mu, std = pccU(m)
 
     simPair = similarityPair(norm, func)
     for pair in tuples:
-        #print pair[0]
+        # print pair[0]
         sim = simPair[pair[0]]
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
-        res.append(prediction[pair[1]])
+        p = prediction[pair[1]] * std[pair[1]] + mu[pair[1]] + 3# plus 3
+        #print p
+        res.append(p)
     return res
+
 
 def pccU(m):
     res = np.copy(m)
@@ -65,7 +67,7 @@ def pccU(m):
         if std[x] > 0:
             temp /= std[x]
         res[x] = temp
-    return res
+    return res, mu, std
 
 def pccI(m):
     m = m.transpose()
@@ -77,7 +79,7 @@ def pccI(m):
         if std[x] > 0:
             temp /= std[x]
         res[x] = temp
-    return res.transpose()
+    return res.transpose(), mu, std
 
 def pccUser(m):
     r = m.shape[0]
