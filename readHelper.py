@@ -1,7 +1,7 @@
 __author__ = 'Ariel'
 
 import numpy as np
-from scipy.sparse import csr_matrix
+from scipy.sparse import coo_matrix
 
 # read training file, (movie, user, rating) into a user-movie matrix
 def readTrain(file):
@@ -15,11 +15,12 @@ def readTrain(file):
             movie.append(int(t[0]))
             rating.append(int(t[2])-3) # pre-process here, option 2
 
-    m = csr_matrix((rating, (user, movie)), dtype = float)
+    m = coo_matrix((rating, (user, movie)), dtype = float)
+    m = m.toarray()
     return m
 
 # read query file into a user-movies dictionary
-def readQuery(file):
+def readQueryMemory(file):
     query = {} # user as key, list of movies as value
     tuples = [] # input order maintenance
     with open(file, 'r') as qu:
@@ -31,3 +32,11 @@ def readQuery(file):
             except:
                 query[int(t[1])] = [int(t[0])]
     return query, tuples
+
+def readQueryModel(file):
+    tuples = []
+    with open(file, 'r')as qu:
+        for line in qu:
+            t = line.split(",")
+            tuples.append((int(t[0]),int(t[1])))
+    return tuples

@@ -50,13 +50,13 @@ print np.average(m3[m3.nonzero()[0].tolist()])
 
 M = readHelper.readTrain('train.csv')
 
-q1 = M[4321]
-#print KNN.knn(M, q1, 6, 'dotp')
-#print KNN.knn(M, q1, 6, 'cosine')
-sim = util.similarity(M, 4321,'dotp')
+sim = util.similarity(M, 4321, 'dotp')
+print util.knn(sim,5)
+sim = util.similarity(M, 4321, 'cosine')
 print util.knn(sim,5)
 
-q2 = M[:,3]
-#print KNN.knn(M.transpose(), q2, 6, 'dotp')
-#print KNN.knn(M.transpose(), q2, 6, 'cosine')
+sim = util.similarity(M.transpose(), 3, 'dotp')
+print util.knn(sim,5)
+sim = util.similarity(M.transpose(), 3, 'cosine')
+print util.knn(sim,5)
 
