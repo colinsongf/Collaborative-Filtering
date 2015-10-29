@@ -2,8 +2,6 @@ __author__ = 'Ariel'
 
 import numpy as np
 from sklearn.preprocessing import normalize
-from scipy.sparse import csr_matrix
-
 
 def similarityPair(m, func):
     # m is the matrix
@@ -37,7 +35,12 @@ def modelCF(m, tuples, k, func, func_w):
         sim = simPair[pair[0]]
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
-        res.append(prediction[pair[1]] + 3)# plus 3
+        pred = prediction[pair[1]] + 3
+        if pred > 5:
+            pred = 5
+        elif pred < 1:
+            pred = 1
+        res.append(pred)# plus 3
     return res
 
 
@@ -52,9 +55,12 @@ def pccModelCF(m, tuples, k, func, func_w):
         sim = simPair[pair[0]]
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
-        p = prediction[pair[1]] * std[pair[1]] + mu[pair[1]] + 3# plus 3
-        #print p
-        res.append(p)
+        pred = prediction[pair[1]] * std[pair[1]] + mu[pair[1]] + 3# plus 3
+        if pred > 5:
+            pred = 5
+        elif pred < 1:
+            pred = 1
+        res.append(pred)
     return res
 
 
