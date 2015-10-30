@@ -36,7 +36,13 @@ def memoryCF(m, query, k, func, func_w):
         temp = knn(sim, k)
         prediction = predict(m, temp, sim, func_w)
         for movie in query[user]:
-            res[user, movie] = prediction[movie] + 3 # plus 3
+            pred = prediction[movie] + 3 # plus 3
+            if pred > 5:
+                pred = 5
+            elif pred < 1:
+                pred = 1
+            res[user, movie] = pred
+
     return res
 
 def pccMemoryCF(m, query, k, func, func_w):
@@ -51,12 +57,11 @@ def pccMemoryCF(m, query, k, func, func_w):
         for movie in query[user]:
             pred = prediction[movie] * std[movie] + mu[movie]+ 3 # plus 3
             if pred > 5:
-                res[user, movie] = 5
+                pred = 5
             elif pred < 1:
-                res[user, movie] = 1
-            else:
-                res[user, movie] = pred
-            print res[user,movie]
+                pred = 1
+            res[user, movie] = pred
+            #print res[user,movie]
     return res
 
 
