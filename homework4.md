@@ -1,10 +1,12 @@
-# Collaborative-Filtering
-collaborative filtering on Netflix Dataset
+##Homework4
+<br>
+AndrewId: xiaoxul 
 
-
+Name: Xiaoxu Lu
 
 ---
-
+###0.Statement of Assurance 
+I certify that everything I submit is writen by myself and only by myself.
 ###1.Corpus Exploration 
 ####1.1 Basic statistics
  
@@ -200,6 +202,5 @@ This instruction is a common use without pcc-like method, with bipartite cluster
 ```
 python main.py -m model -k 100 -s cosine -w weight -b
 ```
-
 
 
