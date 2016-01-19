@@ -11,26 +11,85 @@ I certify that everything I submit is writen by myself and only by myself.
 ####1.1 Basic statistics
  
 Statistics | |
------------|-|
-the total number of movies|5392the total number of users|10916the number of times any movie was rated '1'|53852the number of times any movie was rated '3'|260055the number of times any movie was rated '5'|139429the average movie rating across all users and movies| 3.381
-For user ID 4321 | |
+-----------|--|
+the total number of movies|5392
+the total number of users|10916
+the number of times any movie was rated '1'|53852
+the number of times any movie was rated '3'|260055
+the number of times any movie was rated '5'|139429
+the average movie rating across all users and movies| 3.381
+
+For user ID 4321 | |
 -----------|------|
-the number of movies rated|73the number of times the user gave a '1' rating|4the number of times the user gave a '3' rating|28the number of times the user gave a '5' rating|8the average movie rating for this user|3.151
-For movie ID 3| |-----------|----|the number of users rating this movie|84the number of times the user gave a '1' rating|10the number of times the user gave a '3' rating|29the number of times the user gave a '5' rating|1the average rating for this movie|2.524
+the number of movies rated|73
+the number of times the user gave a '1' rating|4
+the number of times the user gave a '3' rating|28
+the number of times the user gave a '5' rating|8
+the average movie rating for this user|3.151
+
+
+For movie ID 3| |
+-----------|----|
+the number of users rating this movie|84
+the number of times the user gave a '1' rating|10
+the number of times the user gave a '3' rating|29
+the number of times the user gave a '5' rating|1
+the average rating for this movie|2.524
+
+
 ####1.2 Nearest Neighbors 
-|  |Nearest Neighbors|
-|--|-----------------||Top 5 NNs of user 4321 in terms of dot product similarity|980 2586  551 3760   90|Top 5 NNs of user 4321 in terms of cosine similarity|8202 7700 3635 9873 8497|Top 5 NNs of movie 3 in terms of dot product similarity|1466 3688 3835 2292 4927|Top 5 NNs of movie 3 in terms of cosine similarity|5370 4857 5065 5391 4324
+| | | |
+|-|-|-|
+| Normal Key| Value1 |
+|__BoldKey__| Value2 |
+
+||Nearest Neighbors|
+|--|-----------------|
+|Top 5 NNs of user 4321 in terms of dot product similarity|980 2586  551 3760   90|
+|Top 5 NNs of user 4321 in terms of cosine similarity|8202 7700 3635 9873 8497|
+|Top 5 NNs of movie 3 in terms of dot product similarity|1466 3688 3835 2292 4927|
+|Top 5 NNs of movie 3 in terms of cosine similarity|5370 4857 5065 5391 4324|
+
 ###2.Basic Rating Algorithms 
 ####2.1 User-user Similarity
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------Mean|Dot product|10|1.00259912228|53.3912sMean|Dot product|100|1.00666074226|72.3590sMean|Dot product|500|1.04298657984|138.3591sMean|Cosine|10|1.06306036204|118.3650sMean|Cosine|100|1.06200633237|127.7857sMean|Cosine|500|1.07535601069|182.9375SWeighted|Cosine|10|1.06299574024|120.8656sWeighted|Cosine|100|1.06191618427|159.6333sWeighted|Cosine|500|1.07513046072|305.9817s
+-------------|-----------------|-|----|------------
+Mean|Dot product|10|1.00259912228|53.3912s
+Mean|Dot product|100|1.00666074226|72.3590s
+Mean|Dot product|500|1.04298657984|138.3591s
+Mean|Cosine|10|1.06306036204|118.3650s
+Mean|Cosine|100|1.06200633237|127.7857s
+Mean|Cosine|500|1.07535601069|182.9375S
+Weighted|Cosine|10|1.06299574024|120.8656s
+Weighted|Cosine|100|1.06191618427|159.6333s
+Weighted|Cosine|500|1.07513046072|305.9817s
+
 ####2.2 Movie-movie Similarity
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------Mean|Dot product|10|1.02072327298|17.8319sMean|Dot product|100|1.04679255029|131.8365sMean|Dot product|500|1.11089982645|598.7017sMean|Cosine|10|1.02476859176|18.9528sMean|Cosine|100|1.04977274366|147.6397sMean|Cosine|500|1.12376452635|893.2365sWeighted|Cosine|10|1.02258570517|40.9286sWeighted|Cosine|100|1.0390252412|349.1672sWeighted|Cosine|500|1.1226454222|1143.4752s
+-------------|-----------------|-|----|------------
+Mean|Dot product|10|1.02072327298|17.8319s
+Mean|Dot product|100|1.04679255029|131.8365s
+Mean|Dot product|500|1.11089982645|598.7017s
+Mean|Cosine|10|1.02476859176|18.9528s
+Mean|Cosine|100|1.04977274366|147.6397s
+Mean|Cosine|500|1.12376452635|893.2365s
+Weighted|Cosine|10|1.02258570517|40.9286s
+Weighted|Cosine|100|1.0390252412|349.1672s
+Weighted|Cosine|500|1.1226454222|1143.4752s
+
 
 ####2.3.1 Movie-rating normalization
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------Mean|Dot product|10|1.00659815728|57.5093sMean|Dot product|100|0.999206481309|79.3911sMean|Dot product|500|1.034736352537|154.3934sMean|Cosine|10|1.0054750914|116.6785sMean|Cosine|100|1.00513275711|135.7514sMean|Cosine|500|1.00503846352|203.2477sWeighted|Cosine|10|1.00531984207|118.8196sWeighted|Cosine|100|1.00500336293|167.7712sWeighted|Cosine|500|1.00384724736|296.7510s
+-------------|-----------------|-|----|------------
+Mean|Dot product|10|1.00659815728|57.5093s
+Mean|Dot product|100|0.999206481309|79.3911s
+Mean|Dot product|500|1.034736352537|154.3934s
+Mean|Cosine|10|1.0054750914|116.6785s
+Mean|Cosine|100|1.00513275711|135.7514s
+Mean|Cosine|500|1.00503846352|203.2477s
+Weighted|Cosine|10|1.00531984207|118.8196s
+Weighted|Cosine|100|1.00500336293|167.7712s
+Weighted|Cosine|500|1.00384724736|296.7510s
 
 
 ####2.3.2 Detailed Descriptions for normalize algorithm
@@ -50,7 +109,12 @@ Then when computing the predictions, using the mean and standard deviation to to
 
 ####2.4.1 Bipartite Clustering Information
 Running time of bipartite clustering in seconds: 2887.0947s
-Total number of user clusters: 	3000Total number of item clusters: 1500			How did you pick the number of clusters?
+
+Total number of user clusters: 	3000
+
+Total number of item clusters: 1500
+			
+How did you pick the number of clusters?
 
 As the CF algorithm gets a max k as 500, it's better that Bipartite clustering performs on both clusters greater than 500. However, I still tried different combinations of k.
 (for item similarity, k1 for user clusters and k2 for movie clusters)
@@ -63,13 +127,32 @@ As the CF algorithm gets a max k as 500, it's better that Bipartite clustering p
 (3000, 1500)|1.1004|2887.0947s
 
 It's obvious that with the value of k1 and k2 increases, the RMSE decreases correspondingly. A larger value benefits the performance but if we make k equal to the number of instances, then the clustering is meaningless as each instance of itself is a cluster. The reason for performing bipartite clustering or say clustering, is trying to borrow or share information from similar instances.
-
+
+
 ####2.5 User-user Similarity
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------Mean|Dot product|10|1.05526291825|17.6088sMean|Dot product|100|1.0872645242|32.7653sMean|Dot product|500|1.1028375439|100.2376sMean|Cosine|10|1.06455804997|18.5639sMean|Cosine|100|1.0936573927|54.9283sMean|Cosine|500|1.1000928365|127.9386sWeighted|Cosine|10|1.06442074247|26.9668sWeighted|Cosine|100|1.0827162221|63.8745sWeighted|Cosine|500|1.1284764643|142.7145s
+-------------|-----------------|-|----|------------
+Mean|Dot product|10|1.05526291825|17.6088s
+Mean|Dot product|100|1.0872645242|32.7653s
+Mean|Dot product|500|1.1028375439|100.2376s
+Mean|Cosine|10|1.06455804997|18.5639s
+Mean|Cosine|100|1.0936573927|54.9283s
+Mean|Cosine|500|1.1000928365|127.9386s
+Weighted|Cosine|10|1.06442074247|26.9668s
+Weighted|Cosine|100|1.0827162221|63.8745s
+Weighted|Cosine|500|1.1284764643|142.7145s
 ####2.6 Movie-movie Similairty
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------Mean|Dot product|10|1.10043844647|21.7322sMean|Dot product|100|1.04679255029|127.7810sMean|Dot product|500|1.11089982645|344.9163sMean|Cosine|10|1.10379203008|21.2792sMean|Cosine|100|1.1129385639|176.8721sMean|Cosine|500|1.1247301929|346.8264sWeighted|Cosine|10|1.10074951608|45.7839sWeighted|Cosine|100|1.1294864673|298.8620sWeighted|Cosine|500|1.1305837622|682.7452s
+-------------|-----------------|-|----|------------
+Mean|Dot product|10|1.10043844647|21.7322s
+Mean|Dot product|100|1.04679255029|127.7810s
+Mean|Dot product|500|1.11089982645|344.9163s
+Mean|Cosine|10|1.10379203008|21.2792s
+Mean|Cosine|100|1.1129385639|176.8721s
+Mean|Cosine|500|1.1247301929|346.8264s
+Weighted|Cosine|10|1.10074951608|45.7839s
+Weighted|Cosine|100|1.1294864673|298.8620s
+Weighted|Cosine|500|1.1305837622|682.7452s
 ###3.Analysis of results 
 ##### Observation 0: Value of k
 
