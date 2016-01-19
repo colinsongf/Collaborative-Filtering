@@ -11,7 +11,7 @@ I certify that everything I submit is writen by myself and only by myself.
 ####1.1 Basic statistics
  
 Statistics | |
------------|--|
+-----------|---|
 the total number of movies|5392
 the total number of users|10916
 the number of times any movie was rated '1'|53852
@@ -38,10 +38,6 @@ the average rating for this movie|2.524
 
 
 ####1.2 Nearest Neighbors 
-| | | |
-|-|-|-|
-| Normal Key| Value1 |
-|__BoldKey__| Value2 |
 
 ||Nearest Neighbors|
 |--|-----------------|
