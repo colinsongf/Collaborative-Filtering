@@ -94,12 +94,10 @@ I tried both normalization: pcc-like bias elimination on movies for memory-based
 The algorithm for normalized rating:
 
 for movie j, user i (from 0 to n), get the movie's mean and standard deviation, the normalized rating for (i,j) is:
-
-![f1 icon](f1.png =150x)
+<img src="f1.png" width="174" height="64" />
 
 Then when computing the predictions, using the mean and standard deviation to to predict for (i,j):
-
-![f2 icon](f2.png =162x)
+<img src="f2.png" width="188" height="42" />
  
 
 
