@@ -39,8 +39,8 @@ the average rating for this movie|2.524
 
 ####1.2 Nearest Neighbors 
 
-||Nearest Neighbors|
-|--|-----------------|
+|   |Nearest Neighbors|
+|:--|:----------------|
 |Top 5 NNs of user 4321 in terms of dot product similarity|980 2586  551 3760   90|
 |Top 5 NNs of user 4321 in terms of cosine similarity|8202 7700 3635 9873 8497|
 |Top 5 NNs of movie 3 in terms of dot product similarity|1466 3688 3835 2292 4927|
@@ -49,7 +49,7 @@ the average rating for this movie|2.524
 ###2.Basic Rating Algorithms 
 ####2.1 User-user Similarity
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------
+:-------------:|:-----------------:|:-:|:----:|:------------:
 Mean|Dot product|10|1.00259912228|53.3912s
 Mean|Dot product|100|1.00666074226|72.3590s
 Mean|Dot product|500|1.04298657984|138.3591s
@@ -62,7 +62,7 @@ Weighted|Cosine|500|1.07513046072|305.9817s
 
 ####2.2 Movie-movie Similarity
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------
+:-------------:|:-----------------:|:-:|:----:|:------------:
 Mean|Dot product|10|1.02072327298|17.8319s
 Mean|Dot product|100|1.04679255029|131.8365s
 Mean|Dot product|500|1.11089982645|598.7017s
@@ -76,7 +76,7 @@ Weighted|Cosine|500|1.1226454222|1143.4752s
 
 ####2.3.1 Movie-rating normalization
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------
+:-------------:|:-----------------:|:-:|:----:|:------------:
 Mean|Dot product|10|1.00659815728|57.5093s
 Mean|Dot product|100|0.999206481309|79.3911s
 Mean|Dot product|500|1.034736352537|154.3934s
@@ -127,7 +127,7 @@ It's obvious that with the value of k1 and k2 increases, the RMSE decreases corr
 
 ####2.5 User-user Similarity
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------
+:-------------:|:-----------------:|:-:|:----:|:------------:
 Mean|Dot product|10|1.05526291825|17.6088s
 Mean|Dot product|100|1.0872645242|32.7653s
 Mean|Dot product|500|1.1028375439|100.2376s
@@ -139,7 +139,7 @@ Weighted|Cosine|100|1.0827162221|63.8745s
 Weighted|Cosine|500|1.1284764643|142.7145s
 ####2.6 Movie-movie Similairty
 Rating Method|Similarity Metric|K|RMSE|Runtime(sec)*
--------------|-----------------|-|----|------------
+:-------------:|:-----------------:|:-:|:----:|:------------:
 Mean|Dot product|10|1.10043844647|21.7322s
 Mean|Dot product|100|1.04679255029|127.7810s
 Mean|Dot product|500|1.11089982645|344.9163s
